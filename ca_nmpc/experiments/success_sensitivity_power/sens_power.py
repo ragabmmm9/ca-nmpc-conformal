@@ -1,7 +1,7 @@
 # POST-HOC sensitivity of the pilot30 conclusions to the success definition + power analysis (all from stored episodes; no new simulation)
 import pandas as pd, numpy as np
 from scipy.stats import binomtest, norm
-d = pd.read_csv("/home/claude/work/pilotrun/pilot_mb_pilot30/episodes_main.csv"); S = d[d.scenario != "mo_cv"].copy()
+d = pd.read_csv("./pilotrun/pilot_mb_pilot30/episodes_main.csv"); S = d[d.scenario != "mo_cv"].copy()
 S["safe"] = (1 - S.collision) * (1 - S.road_violation) * (1 - S.terminated)
 DEF = {"as pre-specified: safe AND x>=100 m": S.safe * (S.progress >= 100 - 1e-9) if False else S.success,
        "safe AND progress >= 95 m": S.safe * (S.progress >= 95), "safe AND progress >= 90 m": S.safe * (S.progress >= 90),
@@ -30,7 +30,7 @@ R = pd.DataFrame(rows); D = pd.DataFrame(dec)
 pd.set_option("display.width", 250); pd.set_option("display.max_columns", 30)
 print("SUCCESS % (pooled shift, 150 episodes per controller) under alternative definitions"); print(R.to_string(index=False))
 print(); print(D.to_string(index=False))
-R.to_csv("/home/claude/work/pilotrun/sens/sensitivity_success_definition.csv", index=False); D.to_csv("/home/claude/work/pilotrun/sens/sensitivity_decision.csv", index=False)
+R.to_csv("./pilotrun/sens/sensitivity_success_definition.csv", index=False); D.to_csv("./pilotrun/sens/sensitivity_decision.csv", index=False)
 
 # ---------------- power analysis (exact McNemar) -----------------
 def power(n, pd_, delta, alpha=0.05, sims=1500, rng=np.random.default_rng(0)):
@@ -63,4 +63,4 @@ rows = []
 for pd_ in (0.2, 0.3):
     for delta in (0.05, 0.10):
         n = need(pd_, delta); rows.append({"discordance": pd_, "true diff [pp]": 100 * delta, "paired episodes (iid)": n, "design effect used": round(DE, 2), "paired episodes (clustered)": int(np.ceil(n * DE)), "seeds needed (5 shift scen./seed)": int(np.ceil(n * DE / 5))})
-P = pd.DataFrame(rows); print("\nPOWER: exact McNemar, alpha=0.05 two-sided, 80% power"); print(P.to_string(index=False)); P.to_csv("/home/claude/work/pilotrun/sens/power_table.csv", index=False)
+P = pd.DataFrame(rows); print("\nPOWER: exact McNemar, alpha=0.05 two-sided, 80% power"); print(P.to_string(index=False)); P.to_csv("./pilotrun/sens/power_table.csv", index=False)

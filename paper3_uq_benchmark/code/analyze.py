@@ -1,7 +1,7 @@
 """Tidy metrics from eval_seed*.pkl. Usage: python3 analyze.py seed1 seed2 ..."""
 import sys, pickle, math, numpy as np, pandas as pd
 from scipy import stats as st
-RES = '/home/claude/work/paper_uq/results'; N = 25; ALPHA = 0.1
+RES = './paper_uq/results'; N = 25; ALPHA = 0.1
 C90 = math.sqrt(-2 * math.log(ALPHA))                       # Rayleigh multiplier: 90% radius of an isotropic 2-D Gaussian with per-axis std s
 TAUS = np.array([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95])
 METHODS = ['Nom', 'Det', 'Ens', 'MCD', 'Het', 'LLB', 'LLB-N', 'QNN', 'Mon']

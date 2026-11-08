@@ -3,8 +3,8 @@ in-distribution episodes (disjoint seeds) used to fit the learned predictors and
 import os, pickle, time
 import numpy as np
 import uq_sim as S
-OLD = '/home/claude/work/theory/theory_results_home_full/episodes_full.pkl'
-CACHE = '/home/claude/work/paper_uq/results/episodes_new.pkl'
+OLD = './theory/theory_results_home_full/episodes_full.pkl'
+CACHE = './paper_uq/results/episodes_new.pkl'
 N = S.N
 def build_new(n_train=300, n_q=150, n_val=60, T_steps=120):
     if os.path.exists(CACHE): return pickle.load(open(CACHE, 'rb'))

@@ -9,7 +9,7 @@ H = int(sys.argv[1]); ep_n = int(sys.argv[2]); bs = int(sys.argv[3]); lr = float
 tr = M.windows(sets['TRAIN'], H, stride=2); va = M.windows(sets['VAL'], H, stride=4)
 net = M.Net(64)
 t0 = time.time(); vl = M.train(net, nm, tr, va, epochs=ep_n, seed=0, bs=bs, lr=lr, H=H, verbose=True); print('train time', time.time()-t0, 'best val', vl, flush=True)
-torch.save(net.state_dict(), f'/home/claude/work/paper_uq/results/t2_H{H}.pt')
+torch.save(net.state_dict(), f'./paper_uq/results/t2_H{H}.pt')
 def roll_err(net, eps):
     E=[]
     for e in eps:

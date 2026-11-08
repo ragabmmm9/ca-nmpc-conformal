@@ -5,7 +5,7 @@ import data, models as M, uq_sim as S
 from nom_torch import F_nom_t
 torch.set_num_threads(int(os.environ.get('NT', '1')))
 N = S.N; DYN = M.DYN; ND = M.ND
-seed = int(sys.argv[1]); RES = '/home/claude/work/paper_uq/results'
+seed = int(sys.argv[1]); RES = './paper_uq/results'
 sets = data.load_all(); ck = torch.load(f'{RES}/models_seed{seed}.pt')
 assert ck.get('done') or os.environ.get('DEBUG'), 'training not finished'
 nm = M.Norm(sets['TRAIN']); 

@@ -3,7 +3,7 @@ import sys, os, time, torch
 import data, models as M
 torch.set_num_threads(1)
 seed = int(sys.argv[1]); H = 8; EP = 40
-PATH = f'/home/claude/work/paper_uq/results/models_seed{seed}_extra.pt'
+PATH = f'./paper_uq/results/models_seed{seed}_extra.pt'
 sets = data.load_all(); nm = M.Norm(sets['TRAIN'])
 tr = M.windows(sets['TRAIN'], H, stride=2); va = M.windows(sets['VAL'], H, stride=4)
 out = torch.load(PATH) if os.path.exists(PATH) else {'ens': [], 'ens_val': []}

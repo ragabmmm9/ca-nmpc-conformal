@@ -1,9 +1,9 @@
-exec(open("/home/claude/work/pilotrun/prefix_flat.py").read())
+exec(open("./pilotrun/prefix_flat.py").read())
 _base = dict(model="nom", adapt="rls", tube=None, gamma=1.0, obs="cv")
 _st = dict(_base, obs_tube="static", obs_level="phys")
 specs = {"Adaptive+ObsStaticCP x1.5": dict(_st, obs_scale=1.5), "Adaptive+ObsStaticCP x2.0": dict(_st, obs_scale=2.0)}
 # --- reproducibility check against the main run (same code path, scale = 1): a few episodes must match episodes_main.csv
-main = pd.read_csv("/home/claude/work/pilotrun/pilot_mb_pilot30/episodes_main.csv")
+main = pd.read_csv("./pilotrun/pilot_mb_pilot30/episodes_main.csv")
 rep_specs = {"Adaptive+ObsStaticCP": _st, "Adaptive-MPC (FricID)": _base}
 rep = run_jobs2([(n, sp, sc, sd, None, "repro") for sd in (1000, 1001, 1002) for sc in ("mo_swerve", "mo_noisy") for n, sp in rep_specs.items()], ckpt=CKPT2)
 cmp_ = rep.merge(main, on=["controller", "scenario", "seed"], suffixes=("_new", "_main"))

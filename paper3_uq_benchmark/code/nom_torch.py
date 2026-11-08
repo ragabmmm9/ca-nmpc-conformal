@@ -36,7 +36,7 @@ def F_nom_t(s, u, xi=1.0, n_sub=2):
 
 def check_nom(n=2000, seed=0):
     import pickle
-    d = pickle.load(open('/home/claude/work/theory/theory_results_home_full/episodes_full.pkl', 'rb'))
+    d = pickle.load(open('./theory/theory_results_home_full/episodes_full.pkl', 'rb'))
     Ss = np.vstack([e['S'][:-1] for e in d['TEST_mu']]); Us = np.vstack([e['U'] for e in d['TEST_mu']])
     idx = np.random.default_rng(seed).choice(len(Ss), n, replace=False)
     ref = S.np_step(S.F_nom, Ss[idx], Us[idx], np.tile([1.0, 0.0], (n, 1)))

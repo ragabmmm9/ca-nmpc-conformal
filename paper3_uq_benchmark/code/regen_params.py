@@ -1,7 +1,7 @@
 """Re-generate the stored TEST episodes with the SAME random streams, capturing the true shift parameters (verified identical to the stored states)."""
 import pickle, numpy as np
 import uq_sim as S
-OLD = '/home/claude/work/theory/theory_results_home_full/episodes_full.pkl'
+OLD = './theory/theory_results_home_full/episodes_full.pkl'
 def make_episode_p(rng, kind, T_steps, min_after=S.N + 25):
     for attempt in range(60):
         base = dict(mu=float(rng.uniform(0.8, 1.0)), m=float(rng.uniform(1450, 1550)))
@@ -34,4 +34,4 @@ def regen(sets_ref):
     return out
 if __name__ == '__main__':
     ref = pickle.load(open(OLD, 'rb')); res = regen(ref)
-    pickle.dump(res, open('/home/claude/work/paper_uq/results/severity.pkl', 'wb'))
+    pickle.dump(res, open('./paper_uq/results/severity.pkl', 'wb'))

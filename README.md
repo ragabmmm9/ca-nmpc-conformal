@@ -54,7 +54,7 @@ Runs are resumable. Development seeds `0–3` are used for tuning only; test see
 ## Status and known gaps (please read)
 
 - The notebook is stored **without outputs**. Its own header notes that parts of it were assembled from earlier validated code and include a regression test of the extended simulator against the validated one.
-- The scripts in `experiments/` load a flattened copy of the notebook (`prefix_flat.py`) and a stored pilot run from absolute paths on the authors' machine; these paths must be adapted. `paper3_uq_benchmark/code` also contains absolute paths (`/home/claude/work/...`) and expects an input episode file from an earlier experiment (`episodes_full.pkl`) that is **not** included.
+- The scripts in `experiments/` load a flattened copy of the notebook (`prefix_flat.py`) and a stored pilot run from hard-coded paths (e.g. `./pilotrun/...`); these paths must be adapted. `paper3_uq_benchmark/code` also contains hard-coded relative paths (e.g. `./paper_uq/results`) and expects an input episode file from an earlier experiment (`episodes_full.pkl`) that is **not** included.
 - The runner and statistics for the 18-controller benchmark (two plants, 27 shifted episodes per controller) are not separate scripts here; the controllers are defined in the notebook, but a stand-alone benchmark runner is missing.
 - `paper1_delay_gain_aci/numerics` contains only the generators for the g4–g6 checks; generators for the earlier tables (G1–G3, E1) are not included.
 - Result files (episode CSVs, tables, trained models) are not included.

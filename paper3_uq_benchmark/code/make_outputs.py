@@ -1,7 +1,7 @@
 """Tables (LaTeX), figures and in-text numbers from metrics.csv / aux.pkl. All numbers in the paper are produced here."""
 import sys, math, json, numpy as np, pandas as pd
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
-RES = '/home/claude/work/paper_uq/results'; OUT = '/home/claude/work/paper_uq/paper'
+RES = './paper_uq/results'; OUT = './paper_uq/paper'
 M = pd.read_csv(f'{RES}/metrics.csv'); A = pd.read_pickle(f'{RES}/aux.pkl')
 SEEDS = sorted(M.seed.unique()); NS = len(SEEDS)
 SETS = ['TEST_id', 'TEST_mu', 'TEST_ice', 'TEST_cs', 'TEST_mass']; SL = {'TEST_id': 'id', 'TEST_mu': '$\\mu$-drop', 'TEST_ice': 'ice', 'TEST_cs': 'stiffness', 'TEST_mass': 'mass'}

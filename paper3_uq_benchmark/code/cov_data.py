@@ -1,7 +1,7 @@
 """Positive control: a COVARIATE shift (higher speed than any training episode, same physics)."""
 import pickle, os, numpy as np
 import uq_sim as S
-OUT = '/home/claude/work/paper_uq/results/episodes_cov.pkl'
+OUT = './paper_uq/results/episodes_cov.pkl'
 def gen_traj_cov(rng, sc1, T_steps=120, vrange=(20.0, 26.0), noise_scale=1.0):
     plant = S.make_plant(sc1); v_t = rng.uniform(*vrange); s = plant.reset(v_t); nsin = 3
     A = S.AMP * rng.uniform(0.0, 0.07, nsin) * (12.0 / v_t); fr = rng.uniform(0.1, 0.7, nsin); ph = rng.uniform(0, 2 * np.pi, nsin)
